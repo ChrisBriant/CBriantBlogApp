@@ -35,6 +35,15 @@ route.get('/getblogbyid', async (req, res) => {
     console.log(result.name);
   }*/
 
+route.get("/", async (request, response) => {
+    try {
+        var result = await BlogPost.find().exec();
+        response.send(result);
+    } catch (error) {
+        response.status(500).send(error);
+    }
+});
+
 route.get("/viewblogs", async (request, response) => {
     try {
         var result = await BlogPost.find().exec();
