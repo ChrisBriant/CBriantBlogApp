@@ -37,7 +37,7 @@ route.get('/getblogbyid', async (req, res) => {
 
 route.get("/", async (request, response) => {
     try {
-        var result = await BlogPost.find().exec();
+        var result = await BlogPost.find().sort('-date').exec();
         response.send(result);
     } catch (error) {
         response.status(500).send(error);
@@ -46,7 +46,7 @@ route.get("/", async (request, response) => {
 
 route.get("/viewblogs", async (request, response) => {
     try {
-        var result = await BlogPost.find().exec();
+        var result = await BlogPost.find().sort('-date').exec();
         response.send(result);
     } catch (error) {
         response.status(500).send(error);
