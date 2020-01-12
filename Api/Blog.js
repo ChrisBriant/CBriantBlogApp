@@ -60,11 +60,19 @@ route.get("/viewblog", async (request, response) => {
         }
         var result = await BlogPost.findById(request.query['id']).exec();
         response.send(result);
-        console.log("HERE");
     } catch (error) {
         response.status(500).send(error);
     }
 });
 
+
+route.get("/deleteblog/:id", async (request, response) => {
+    try {
+          var id = await BlogPost.findByIdAndRemove(request.params.id).exec();
+          response.send(id);
+        } catch (error) {
+            response.status(500).send(error);
+        }
+});
 
 module.exports = route;
